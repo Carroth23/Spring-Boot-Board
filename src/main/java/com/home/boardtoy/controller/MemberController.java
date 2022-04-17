@@ -1,5 +1,6 @@
 package com.home.boardtoy.controller;
 
+import com.home.boardtoy.dto.MemberDTO;
 import com.home.boardtoy.service.MemberService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -18,6 +19,12 @@ public class MemberController {
     @GetMapping("/signup")
     public String signupGo() {
         return "/member/signupForm";
+    }
+
+    @PostMapping("/signup")
+    public String signup(MemberDTO dto) {
+        memberService.signup(dto);
+        return "redirect:index";
     }
 
     @ResponseBody

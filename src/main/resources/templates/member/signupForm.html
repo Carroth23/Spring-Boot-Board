@@ -31,48 +31,108 @@
       width: 100%;
       height: 100vh;
       position: relative;
+      background-image: url("/img/times.jpg");
+      object-fit: cover;
     }
 
     #signupBox {
       width: 500px;
-      height: 300px;
+      height: 200px;
       border: 1px solid black;
       position: absolute;
       top: 50%;
       left: 50%;
-      margin-top: -150px;
+      margin-top: -100px;
       margin-left: -250px;
+      border-radius: 5px;
+      background-color: white;
+      opacity: 0.95;
     }
+
+    #idDupleCheck{
+      width:60px;
+      height: 30px;
+      border-radius: 5px;
+      background-color: rgb(204, 245, 204);
+      border:none;
+      color:rgb(57, 57, 57);
+      box-shadow: 1px 1px 1px 1px rgb(240, 240, 240);
+    }
+    #idDupleCheck:hover{
+      box-shadow: none;
+    }
+
+    .idBox{
+      margin-top:20px;
+      margin-bottom:20px;
+      text-align: center;
+    }
+    .pwBox{
+      text-align: center;
+    }
+    .submitBox{
+      text-align: center;
+      margin-top:20px;
+    }
+    #signupBtn{
+      width:220px;
+      height:50px;
+      border-radius: 5px;
+      border:none;
+      font-size: 20px;
+      background-color: rgb(125, 184, 186);
+      color:rgb(255, 255, 255);
+      box-shadow: 1px 1px 1px 1px rgb(240, 240, 240);
+      font-weight: bold;
+    }
+    #signupBtn:hover{
+      box-shadow: none;
+    }
+
   </style>
 </head>
 
 <body>
   <div id="container">
-    <form action="signup" method="post" id="signupBox">
-      <div class="row">
+    <form action="/member/signup" method="post" id="signupBox" onsubmit="return subconfirm()">
+      <div class="row idBox">
         <div class="col-3">ID</div>
-        <div class="col-7"><input type="text" name="id" id="id" required></div>
-        <div class="col-2"><button id="idDupleCheck" type="button">검사</button></div>
+        <div class="col-6"><input type="text" name="id" id="id" required></div>
+        <div class="col-3 CheckBox"><button id="idDupleCheck" type="button">검사</button></div>
+      </div>
+      <div class="row pwBox">
+        <div class="col-3">PW</div>
+        <div class="col-6"><input type="password" name="pw" required></div>
       </div>
       <div class="row">
-        <div class="col-3">PW</div>
-        <div class="col-9"><input type="password" name="pw" required></div>
+        <div class="col-12 submitBox"><button id="signupBtn">가입</button></div>
       </div>
     </form>
   </div>
 
-<script>
-  'use strict'
-  document.getElementById("idDupleCheck").addEventListener("click", () => {
-    $.ajax({
-      type: "post",
-      url: "/member/idDupleCheck",
-      data: {id: document.getElementById("id").value}
-    }).done(function(res){
-      console.log(res);
-    })
-  });
-</script>
+  <script>
+    'use strict'
+    document.getElementById("idDupleCheck").addEventListener("click", () => {
+      let idval = document.getElementById("id").value;
+      $.ajax({
+        type: "post",
+        url: "/member/idDupleCheck",
+        data: { id: idval }
+      }).done(function (res) {
+        if (res == 1) {
+          alert("이미 사용중인 ID입니다.");
+          document.getElementById("id").value = "";
+        }
+        if (res == 0) {
+          alert("사용 가능한 ID입니다.");
+        }
+      })
+    });
+
+    function subconfirm(){
+      return confirm("가입하시겠습니까?");
+    }
+  </script>
 </body>
 
 </html>

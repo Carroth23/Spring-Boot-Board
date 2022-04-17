@@ -8,5 +8,5 @@ public interface MemberService {
 
     MemberDTO login();
 
-    MemberDTO signup();
+    int signup(MemberDTO dto);
 }

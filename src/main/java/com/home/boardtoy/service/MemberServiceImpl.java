@@ -26,7 +26,7 @@ public class MemberServiceImpl implements MemberService{
     }
 
     @Override
-    public MemberDTO signup() {
-        return null;
+    public int signup(MemberDTO dto) {
+        return memberMapper.signup(dto);
     }
 }
