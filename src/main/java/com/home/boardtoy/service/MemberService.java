@@ -6,7 +6,7 @@ public interface MemberService {
 
     int idDupleCheck(String id);
 
-    MemberDTO login();
+    int login(String id, String pw);
 
     int signup(MemberDTO dto);
 }

@@ -9,4 +9,8 @@
     <insert id="signup">
         insert into member values(#{id}, #{pw})
     </insert>
+
+    <select id="login" resultType="int">
+        select count(*) from member where id = #{id} and pw = #{pw}
+    </select>
 </mapper>
