@@ -28,4 +28,14 @@ public class BoardServiceImpl implements BoardService{
     public int delContent(int seq) {
         return boardMapper.delContent(seq);
     }
+
+    @Override
+    public int write(String id, String title, String content) {
+        return boardMapper.write(id, title, content);
+    }
+
+    @Override
+    public int view_countAdd(int seq) {
+        return boardMapper.view_countAdd(seq);
+    }
 }

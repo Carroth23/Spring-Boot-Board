@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpSession;
 import java.util.List;
 import java.util.Optional;
 
@@ -19,6 +20,7 @@ import java.util.Optional;
 public class BoardController {
 
     private final BoardService boardService;
+    private final HttpSession session;
 
     @GetMapping
     public String board(@RequestParam(defaultValue = "0") int start, @RequestParam(defaultValue = "10") int end, Model model) {
@@ -31,6 +33,7 @@ public class BoardController {
     @GetMapping("/{seq}")
     public String detail(@PathVariable int seq, Model model) {
         BoardDTO detail = boardService.detail(seq);
+        boardService.view_countAdd(seq);
         model.addAttribute("detail", detail);
         return "/board/detail";
     }
@@ -41,5 +44,17 @@ public class BoardController {
         log.info("넘어온 delSeq = {}", seq);
         boardService.delContent(seq);
         return "/board";
+    }
+
+    @GetMapping("/write")
+    public String writeForm() {
+        return "/board/write";
+    }
+
+    @PostMapping("/write")
+    public String write(String title, String content) {
+        String id = (String)session.getAttribute("id");
+        boardService.write(id, title, content);
+        return "redirect:/board";
     }
 }

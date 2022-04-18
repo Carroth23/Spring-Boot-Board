@@ -11,4 +11,8 @@ public interface BoardService {
     BoardDTO detail(int seq);
 
     int delContent(int seq);
+
+    int write(String id, String title, String content);
+
+    int view_countAdd(int seq);
 }

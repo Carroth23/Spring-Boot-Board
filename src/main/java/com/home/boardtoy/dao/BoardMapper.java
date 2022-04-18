@@ -13,4 +13,8 @@ public interface BoardMapper {
     BoardDTO detail(int seq);
 
     int delContent(int seq);
+
+    int write(@Param("id") String id, @Param("title") String title, @Param("content") String content);
+
+    int view_countAdd(int seq);
 }

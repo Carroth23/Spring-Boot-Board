@@ -13,4 +13,12 @@
     <delete id="delContent">
         delete from board where seq = ${value}
     </delete>
+
+    <insert id="write">
+        insert into board values(board_seq.nextval, #{title}, #{id}, #{content}, sysdate, 0)
+    </insert>
+
+    <update id="view_countAdd">
+        UPDATE board set view_count = view_count + 1 where seq = ${value}
+    </update>
 </mapper>
