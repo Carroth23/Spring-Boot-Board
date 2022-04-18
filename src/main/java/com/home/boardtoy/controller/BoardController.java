@@ -57,4 +57,10 @@ public class BoardController {
         boardService.write(id, title, content);
         return "redirect:/board";
     }
+
+    @GetMapping("/modify")
+    public String modify(int seq) {
+        log.info("seq = {}", seq);
+        return "/board/modify";
+    }
 }

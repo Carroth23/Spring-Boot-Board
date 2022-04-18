@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <head>
   <meta charset="UTF-8">
@@ -26,9 +26,10 @@
       font-family: 'Noto Sans KR', sans-serif;
       box-sizing: border-box;
     }
-    .container{
+
+    .container {
       width: 600px;
-      height:400px;
+      height: 400px;
     }
 
     div {
@@ -50,23 +51,25 @@
       </div>
     </div>
     <div class="row">
-      <div class="col-3" th:if="${session.id == detail.writer}">수정</div>
+      <div class="col-3" th:if="${session.id == detail.writer}"><a href="/board/modify" th:href="@{/board/modify?seq={seq}(seq=${detail.seq})}">수정</a></div>
       <div class="col-3" th:if="${session.id == detail.writer}"><button id="delBtn">삭제</button></div>
-      <div class="col-3">목록</div>
+      <div class="col-3"><a href="/board">목록</a></div>
     </div>
   </div>
 
   <script th:inline="javascript">
     'use strict'
-    let detailseq = [[${detail.seq}]];
+    let detailseq = [[${ detail.seq }]];
     document.getElementById("delBtn").addEventListener("click", () => {
-      $.ajax({
-        url: "/board/del",
-        data: {seq: detailseq},
-        type: "post"
-      }).done(function(res){
-        location.href=res;
-      })
+      if (confirm("삭제하시겠습니까?")) {
+        $.ajax({
+          url: "/board/del",
+          data: { seq: detailseq },
+          type: "post"
+        }).done(function (res) {
+          location.href = res;
+        })
+      }
     });
   </script>
 </body>
