@@ -11,4 +11,6 @@ public interface BoardMapper {
     List<BoardDTO> boardList(@Param("start") int start, @Param("end") int end);
 
     BoardDTO detail(int seq);
+
+    int delContent(int seq);
 }

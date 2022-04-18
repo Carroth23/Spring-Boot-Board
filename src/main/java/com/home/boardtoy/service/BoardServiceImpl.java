@@ -23,4 +23,9 @@ public class BoardServiceImpl implements BoardService{
     public BoardDTO detail(int seq) {
         return boardMapper.detail(seq);
     }
+
+    @Override
+    public int delContent(int seq) {
+        return boardMapper.delContent(seq);
+    }
 }

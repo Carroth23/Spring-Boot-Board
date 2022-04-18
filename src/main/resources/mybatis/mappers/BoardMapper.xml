@@ -9,4 +9,8 @@
     <select id="detail" resultType="com.home.boardtoy.dto.BoardDTO">
         select * from board where seq = ${value}
     </select>
+
+    <delete id="delContent">
+        delete from board where seq = ${value}
+    </delete>
 </mapper>

@@ -51,10 +51,24 @@
     </div>
     <div class="row">
       <div class="col-3" th:if="${session.id == detail.writer}">수정</div>
-      <div class="col-3" th:if="${session.id == detail.writer}">삭제</div>
+      <div class="col-3" th:if="${session.id == detail.writer}"><button id="delBtn">삭제</button></div>
       <div class="col-3">목록</div>
     </div>
   </div>
+
+  <script th:inline="javascript">
+    'use strict'
+    let detailseq = [[${detail.seq}]];
+    document.getElementById("delBtn").addEventListener("click", () => {
+      $.ajax({
+        url: "/board/del",
+        data: {seq: detailseq},
+        type: "post"
+      }).done(function(res){
+        location.href=res;
+      })
+    });
+  </script>
 </body>
 
 </html>

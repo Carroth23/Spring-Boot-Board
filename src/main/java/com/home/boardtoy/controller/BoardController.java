@@ -7,10 +7,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.context.properties.bind.DefaultValue;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
@@ -36,5 +33,13 @@ public class BoardController {
         BoardDTO detail = boardService.detail(seq);
         model.addAttribute("detail", detail);
         return "/board/detail";
+    }
+
+    @PostMapping("/del")
+    @ResponseBody
+    public String del(int seq) {
+        log.info("넘어온 delSeq = {}", seq);
+        boardService.delContent(seq);
+        return "/board";
     }
 }
