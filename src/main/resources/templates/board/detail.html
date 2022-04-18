@@ -49,6 +49,11 @@
         내용칸
       </div>
     </div>
+    <div class="row">
+      <div class="col-3" th:if="${session.id == detail.writer}">수정</div>
+      <div class="col-3" th:if="${session.id == detail.writer}">삭제</div>
+      <div class="col-3">목록</div>
+    </div>
   </div>
 </body>
 

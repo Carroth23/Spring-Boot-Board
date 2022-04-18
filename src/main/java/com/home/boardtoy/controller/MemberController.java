@@ -49,4 +49,10 @@ public class MemberController {
             return "redirect:/board";
         }
     }
+
+    @RequestMapping("/logout")
+    public String logout() {
+        session.invalidate();
+        return "redirect:/";
+    }
 }
