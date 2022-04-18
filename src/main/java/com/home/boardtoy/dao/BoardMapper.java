@@ -9,4 +9,6 @@ import java.util.List;
 @Mapper
 public interface BoardMapper {
     List<BoardDTO> boardList(@Param("start") int start, @Param("end") int end);
+
+    BoardDTO detail(int seq);
 }

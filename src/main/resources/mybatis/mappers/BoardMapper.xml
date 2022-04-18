@@ -6,4 +6,7 @@
         select * from board order by seq desc offset ${start} rows fetch first ${end} rows only
     </select>
 
+    <select id="detail" resultType="com.home.boardtoy.dto.BoardDTO">
+        select * from board where seq = ${value}
+    </select>
 </mapper>

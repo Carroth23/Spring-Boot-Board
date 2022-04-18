@@ -7,4 +7,6 @@ import java.util.List;
 public interface BoardService {
 
     List<BoardDTO> boardList(int start, int end);
+
+    BoardDTO detail(int seq);
 }

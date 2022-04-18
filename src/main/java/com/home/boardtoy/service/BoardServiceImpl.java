@@ -18,4 +18,9 @@ public class BoardServiceImpl implements BoardService{
         List<BoardDTO> list = boardMapper.boardList(start, end);
         return list;
     }
+
+    @Override
+    public BoardDTO detail(int seq) {
+        return boardMapper.detail(seq);
+    }
 }

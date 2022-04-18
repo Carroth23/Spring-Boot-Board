@@ -8,6 +8,7 @@ import org.springframework.boot.context.properties.bind.DefaultValue;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -28,5 +29,12 @@ public class BoardController {
         List<BoardDTO> list = boardService.boardList(start, end);
         model.addAttribute("list", list);
         return "/board/list";
+    }
+
+    @GetMapping("/{seq}")
+    public String detail(@PathVariable int seq, Model model) {
+        BoardDTO detail = boardService.detail(seq);
+        model.addAttribute("detail", detail);
+        return "/board/detail";
     }
 }

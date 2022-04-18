@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -25,34 +26,30 @@
       font-family: 'Noto Sans KR', sans-serif;
       box-sizing: border-box;
     }
-    .BoardBox{
-      width:800px;
-      height:600px;
-      border: 1px solid black;
+    .container{
+      width: 600px;
+      height:400px;
+    }
+
+    div {
+      border: 1px solid gray;
     }
   </style>
 </head>
+
 <body>
-  <h2 th:text="|${session.id} 님 환영합니다|">이거뜨면 로그인 성공</h2>
-  <div id="container">
-    <div class="BoardBox">
-      <table border="1">
-        <tr>
-          <td>번호</td>
-          <td>제목</td>
-          <td>작성자</td>
-          <td>조회수</td>
-          <td>작성일</td>
-        </tr>
-        <tr th:each="list : ${list}">
-          <td><a href="" th:href="@{/board/{seq}(seq=${list.seq})}" th:text="${list.seq}"></a></td>
-          <td><a href="" th:href="@{/board/{seq}(seq=${list.seq})}" th:text="${list.title}"></a></td>
-          <td th:text="${list.writer}">작성자입니다</td>
-          <td th:text="${list.view_count}">조회수입니다</td>
-          <td th:text="${list.write_date}">작성일입니다</td>
-        </tr>
-      </table>
+  <div class="container">
+    <div class="row">
+      <div class="col-3" th:text="${detail.seq}">글번호</div>
+      <div class="col-6" th:text="${detail.title}">글제목</div>
+      <div class="col-3" th:text="${detail.writer}">작성자</div>
+    </div>
+    <div class="row">
+      <div class="col-12" th:text="${detail.content}">
+        내용칸
+      </div>
     </div>
   </div>
 </body>
+
 </html>
