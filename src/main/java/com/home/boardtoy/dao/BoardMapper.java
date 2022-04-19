@@ -17,4 +17,6 @@ public interface BoardMapper {
     int write(@Param("id") String id, @Param("title") String title, @Param("content") String content);
 
     int view_countAdd(int seq);
+
+    int allBoardCount();
 }

@@ -2,8 +2,9 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.home.boardtoy.dao.BoardMapper">
 
+    <!-- select * from board order by seq desc offset ${start} rows fetch first ${end} rows only 오라클 12 이후-->
     <select id="boardList" resultType="com.home.boardtoy.dto.BoardDTO">
-        select * from board order by seq desc offset ${start} rows fetch first ${end} rows only
+        select * from(select board.*, ROW_NUMBER() OVER(order by seq desc) rn from board) board where rn between ${start} and ${end}
     </select>
 
     <select id="detail" resultType="com.home.boardtoy.dto.BoardDTO">
@@ -21,4 +22,8 @@
     <update id="view_countAdd">
         UPDATE board set view_count = view_count + 1 where seq = ${value}
     </update>
+
+    <select id="allBoardCount" resultType="int">
+        select count(*) from board
+    </select>
 </mapper>

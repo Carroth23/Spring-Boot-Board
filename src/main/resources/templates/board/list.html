@@ -61,6 +61,13 @@
           <a href="/board/write"><button>글쓰기</button></a>
         </div>
       </div>
+      <div class="row">
+        <div class="col-12" th:with="start=${page.startPage}, end=${page.endPage}">
+          <span th:each="pag : ${#numbers.sequence(start,end)}">
+            <a href="" th:href="|@{/board?cpage={pagea}(pagea=${pag})}|" th:text="${pag}"></a>
+          </span>
+        </div>
+      </div>
     </div>
   </div>
 </body>

@@ -1,6 +1,7 @@
 package com.home.boardtoy.controller;
 
 import com.home.boardtoy.dto.BoardDTO;
+import com.home.boardtoy.dto.PageDTO;
 import com.home.boardtoy.service.BoardService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -23,10 +24,13 @@ public class BoardController {
     private final HttpSession session;
 
     @GetMapping
-    public String board(@RequestParam(defaultValue = "0") int start, @RequestParam(defaultValue = "10") int end, Model model) {
-        log.info("start = {}, end = {}", start, end);
-        List<BoardDTO> list = boardService.boardList(start, end);
+    public String board(@RequestParam(defaultValue = "1") int cpage, Model model) {
+        PageDTO page = boardService.pageMaker(cpage);
+        List<BoardDTO> list = boardService.boardList(page.getStart(), page.getEnd());
         model.addAttribute("list", list);
+        model.addAttribute("page", page);
+        log.info("start = {}, end = {}", page.getStart(), page.getEnd());
+        log.info("page = {}", page.toString());
         return "/board/list";
     }
 
