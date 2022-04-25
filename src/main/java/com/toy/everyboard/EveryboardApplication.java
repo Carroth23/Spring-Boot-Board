@@ -1,13 +1,13 @@
-package com.home.boardtoy;
+package com.toy.everyboard;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class BoardtoyApplication {
+public class EveryboardApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(BoardtoyApplication.class, args);
+		SpringApplication.run(EveryboardApplication.class, args);
 	}
 
 }
