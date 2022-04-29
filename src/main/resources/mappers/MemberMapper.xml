@@ -3,7 +3,7 @@
 <mapper namespace="com.toy.everyboard.dao.MemberDAO">
 
     <select id="selectMember" resultType="MemberDTO">
-        select * from
+        select * from user
     </select>
 
 </mapper>

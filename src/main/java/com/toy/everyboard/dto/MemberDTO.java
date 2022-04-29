@@ -8,7 +8,7 @@ import java.sql.Date;
 @Getter @Setter
 public class MemberDTO {
 
-    private int user_seq;
+    private Long user_seq;
     private String user_id;
     private String user_pw;
     private String user_nickname;
@@ -17,7 +17,7 @@ public class MemberDTO {
     private String user_photo;
     private Date user_join_date;
 
-    public MemberDTO(int user_seq, String user_id, String user_pw, String user_nickname, Date user_Birth, String user_address, String user_photo, Date user_join_date) {
+    public MemberDTO(Long user_seq, String user_id, String user_pw, String user_nickname, Date user_Birth, String user_address, String user_photo, Date user_join_date) {
         this.user_seq = user_seq;
         this.user_id = user_id;
         this.user_pw = user_pw;

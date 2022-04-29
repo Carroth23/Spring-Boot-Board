@@ -1,12 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
 </head>
+
 <body>
-  <h2>홈임 ㅎ</h2>
+  <form action="/member/join" method="post" >
+    <input type="text" placeholder="ID" name="user_id"><br>
+    <input type="text" placeholder="PW" name="user_pw"><br>
+    <input type="text" placeholder="닉네임" name="user_nickname"><br>
+    <input type="date" name="user_Birth"><br>
+    <input type="text" id="address" name="user_address">
+    <button type="button" id="addressBtn">주소검색</button><br>
+    <input type="file" name="user_photo"><br>
+    <button>가입</button>
+  </form>
+
+  <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+  <script>
+    document.getElementById("addressBtn").addEventListener("click", () => {
+      new daum.Postcode({
+        oncomplete: function (data) {
+          document.getElementById("address").value = data.zonecode + " " + data.address;
+        }
+      }).open();
+    });
+  </script>
 </body>
+
 </html>
